@@ -25,10 +25,7 @@
                   v-for="doughType in dough"
                   :key="doughType.id"
                   class="dough__input"
-                  :class="{
-                    'dough__input--large': doughType.name === 'Толстое',
-                    'dough__input--light': doughType.name === 'Тонкое',
-                  }"
+                  :class="setDougLabelClass(doughType.name)"
                 >
                   <input
                     type="radio"
@@ -51,11 +48,7 @@
                   v-for="size in sizes"
                   :key="size.id"
                   class="diameter__input"
-                  :class="{
-                    'diameter__input--small': size.multiplier === 1,
-                    'diameter__input--normal': size.multiplier === 2,
-                    'diameter__input--big': size.multiplier === 3,
-                  }"
+                  :class="setSizeLabelClass(size.multiplier)"
                 >
                   <input
                     type="radio"
@@ -101,24 +94,7 @@
                     >
                       <span
                         class="filling"
-                        :class="{
-                          'filling--mushrooms': ingredient.name === 'Грибы',
-                          'filling--tomatoes': ingredient.name === 'Томаты',
-                          'filling--ananas': ingredient.name === 'Ананас',
-                          'filling--bacon': ingredient.name === 'Бекон',
-                          'filling--blue_cheese': ingredient.name === 'Блю чиз',
-                          'filling--cheddar': ingredient.name === 'Чеддер',
-                          'filling--chile': ingredient.name === 'Чили',
-                          'filling--ham': ingredient.name === 'Ветчина',
-                          'filling--jalapeno': ingredient.name === 'Халапеньо',
-                          'filling--mozzarella':
-                            ingredient.name === 'Моцарелла',
-                          'filling--olives': ingredient.name === 'Маслины',
-                          'filling--onion': ingredient.name === 'Лук',
-                          'filling--parmesan': ingredient.name === 'Пармезан',
-                          'filling--salami': ingredient.name === 'Салями',
-                          'filling--salmon': ingredient.name === 'Лосось',
-                        }"
+                        :class="setFillingLabelClass(ingredient.name)"
                       >
                         {{ ingredient.name }}
                       </span>
@@ -194,6 +170,44 @@ export default {
       sizes: pizza.sizes,
       dough: pizza.dough,
     };
+  },
+
+  methods: {
+    setDougLabelClass(type) {
+      const doughs = {
+        Толстое: "large",
+        Тонкое: "light",
+      };
+      return `dough__input--${doughs[type]}`;
+    },
+    setSizeLabelClass(multiplier) {
+      const multipliers = {
+        1: "small",
+        2: "normal",
+        3: "big",
+      };
+      return `diameter__input--${multipliers[multiplier]}`;
+    },
+    setFillingLabelClass(name) {
+      const ingredients = {
+        Грибы: "mushrooms",
+        Томаты: "tomatoes",
+        Ананас: "ananas",
+        Бекон: "bacon",
+        "Блю чиз": "blue_cheese",
+        Чеддер: "cheddar",
+        Чили: "chile",
+        Ветчина: "ham",
+        Халапеньо: "jalapeno",
+        Моцарелла: "mozzarella",
+        Маслины: "olives",
+        Лук: "onion",
+        Пармезан: "parmesan",
+        Салями: "salami",
+        Лосось: "salmon",
+      };
+      return `filling--${ingredients[name]}`;
+    },
   },
 };
 </script>
