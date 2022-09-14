@@ -58,19 +58,16 @@
               <div class="sheet__content ingredients">
                 <div class="ingredients__sauce">
                   <p>Основной соус:</p>
-                  <label
+                  <RadioButton
                     v-for="sauce in sauces"
                     :key="sauce.id"
-                    class="radio ingredients__input"
+                    name="sauce"
+                    :value="sauce.name"
+                    :checked="sauce.id === 1"
+                    class="ingredients__input"
                   >
-                    <input
-                      type="radio"
-                      name="sauce"
-                      :value="sauce.name"
-                      :checked="sauce.id === 1"
-                    />
                     <span>{{ sauce.name }}</span>
-                  </label>
+                  </RadioButton>
                 </div>
                 <div class="ingredients__filling">
                   <p>Начинка:</p>
@@ -146,12 +143,14 @@
 <script>
 import pizza from "@/static/pizza.json";
 import AppLayout from "@/layouts/AppLayout.vue";
+import RadioButton from "@/common/components/RadioButton.vue";
 
 export default {
   name: "Index",
 
   components: {
     AppLayout,
+    RadioButton,
   },
 
   data() {
