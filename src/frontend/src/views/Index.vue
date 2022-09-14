@@ -18,28 +18,15 @@
             />
           </div>
           <div class="content__pizza">
-            <label class="input">
+            <AppInput
+              type="text"
+              name="pizza_name"
+              placeholder="Введите название пиццы"
+            >
               <span class="visually-hidden">Название пиццы</span>
-              <input
-                type="text"
-                name="pizza_name"
-                placeholder="Введите название пиццы"
-              />
-            </label>
-            <div class="content__constructor">
-              <div class="pizza pizza--foundation--big-tomato">
-                <div class="pizza__wrapper">
-                  <div class="pizza__filling pizza__filling--ananas"></div>
-                  <div class="pizza__filling pizza__filling--bacon"></div>
-                  <div class="pizza__filling pizza__filling--cheddar"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="content__result">
-              <p>Итого: 0 ₽</p>
-              <button type="button" class="button" disabled>Готовьте!</button>
-            </div>
+            </AppInput>
+            <BuilderPizzaView />
+            <BuilderPriceCounter />
           </div>
         </div>
       </form>
@@ -53,6 +40,9 @@ import AppLayout from "@/layouts/AppLayout.vue";
 import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector.vue";
 import BuilderSizeSelector from "@/modules/builder/components/BuilderSizeSelector.vue";
 import BuilderIngredientsSelector from "@/modules/builder/components/BuilderIngredientsSelector.vue";
+import BuilderPizzaView from "@/modules/builder/components/BuilderPizzaView.vue";
+import AppInput from "@/common/components/AppInput.vue";
+import BuilderPriceCounter from "@/common/components/BuilderPriceCounter.vue";
 
 export default {
   name: "Index",
@@ -62,6 +52,9 @@ export default {
     BuilderDoughSelector,
     BuilderSizeSelector,
     BuilderIngredientsSelector,
+    BuilderPizzaView,
+    AppInput,
+    BuilderPriceCounter,
   },
 
   data() {
