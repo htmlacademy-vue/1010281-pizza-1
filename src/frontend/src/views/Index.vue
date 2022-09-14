@@ -9,26 +9,7 @@
             <BuilderDoughSelector :dough="dough" />
           </div>
           <div class="content__diameter">
-            <div class="sheet">
-              <h2 class="title title--small sheet__title">Выберите размер</h2>
-              <div class="sheet__content diameter">
-                <label
-                  v-for="size in sizes"
-                  :key="size.id"
-                  class="diameter__input"
-                  :class="setSizeLabelClass(size.multiplier)"
-                >
-                  <input
-                    type="radio"
-                    name="diameter"
-                    :value="size.name"
-                    class="visually-hidden"
-                    :checked="size.multiplier === 2"
-                  />
-                  <span>{{ size.name }}</span>
-                </label>
-              </div>
-            </div>
+            <BuilderSizeSelector :sizes="sizes" />
           </div>
           <div class="content__ingredients">
             <div class="sheet">
@@ -106,6 +87,7 @@ import AppLayout from "@/layouts/AppLayout.vue";
 import RadioButton from "@/common/components/RadioButton.vue";
 import ItemCounter from "@/common/components/ItemCounter.vue";
 import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector.vue";
+import BuilderSizeSelector from "@/modules/builder/components/BuilderSizeSelector.vue";
 
 export default {
   name: "Index",
@@ -115,6 +97,7 @@ export default {
     RadioButton,
     ItemCounter,
     BuilderDoughSelector,
+    BuilderSizeSelector,
   },
 
   data() {
@@ -127,14 +110,6 @@ export default {
   },
 
   methods: {
-    setSizeLabelClass(multiplier) {
-      const multipliers = {
-        1: "small",
-        2: "normal",
-        3: "big",
-      };
-      return `diameter__input--${multipliers[multiplier]}`;
-    },
     setFillingLabelClass(name) {
       const ingredients = {
         Грибы: "mushrooms",
