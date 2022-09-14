@@ -4,7 +4,7 @@
     <div class="sheet__content ingredients">
       <div class="ingredients__sauce">
         <p>Основной соус:</p>
-        <RadioButton
+        <AppRadioButton
           v-for="sauce in sauces"
           :key="sauce.id"
           name="sauce"
@@ -13,7 +13,7 @@
           class="ingredients__input"
         >
           <span>{{ sauce.name }}</span>
-        </RadioButton>
+        </AppRadioButton>
       </div>
       <div class="ingredients__filling">
         <p>Начинка:</p>
@@ -38,14 +38,14 @@
 </template>
 
 <script>
-import RadioButton from "@/common/components/RadioButton.vue";
+import AppRadioButton from "@/common/components/AppRadioButton.vue";
 import ItemCounter from "@/common/components/ItemCounter.vue";
 
 export default {
   name: "BuilderIngredientsSelector",
 
   components: {
-    RadioButton,
+    AppRadioButton,
     ItemCounter,
   },
 
