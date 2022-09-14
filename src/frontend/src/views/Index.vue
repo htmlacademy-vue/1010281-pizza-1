@@ -6,27 +6,7 @@
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
           <div class="content__dough">
-            <div class="sheet">
-              <h2 class="title title--small sheet__title">Выберите тесто</h2>
-              <div class="sheet__content dough">
-                <label
-                  v-for="doughType in dough"
-                  :key="doughType.id"
-                  class="dough__input"
-                  :class="setDougLabelClass(doughType.name)"
-                >
-                  <input
-                    type="radio"
-                    name="dought"
-                    :value="doughType.name"
-                    class="visually-hidden"
-                    :checked="doughType.id === 1"
-                  />
-                  <b>{{ doughType.name }}</b>
-                  <span>{{ doughType.description }}</span>
-                </label>
-              </div>
-            </div>
+            <BuilderDoughSelector :dough="dough" />
           </div>
           <div class="content__diameter">
             <div class="sheet">
@@ -125,6 +105,7 @@ import pizza from "@/static/pizza.json";
 import AppLayout from "@/layouts/AppLayout.vue";
 import RadioButton from "@/common/components/RadioButton.vue";
 import ItemCounter from "@/common/components/ItemCounter.vue";
+import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector.vue";
 
 export default {
   name: "Index",
@@ -133,6 +114,7 @@ export default {
     AppLayout,
     RadioButton,
     ItemCounter,
+    BuilderDoughSelector,
   },
 
   data() {
@@ -145,13 +127,6 @@ export default {
   },
 
   methods: {
-    setDougLabelClass(type) {
-      const doughs = {
-        Толстое: "large",
-        Тонкое: "light",
-      };
-      return `dough__input--${doughs[type]}`;
-    },
     setSizeLabelClass(multiplier) {
       const multipliers = {
         1: "small",
