@@ -5,9 +5,7 @@
       <form action="#" method="post">
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
-          <div class="content__dough">
-            <BuilderDoughSelector :dough="dough" />
-          </div>
+          <BuilderDoughSelector :dough="dough" />
           <div class="content__diameter">
             <BuilderSizeSelector :sizes="sizes" />
           </div>
