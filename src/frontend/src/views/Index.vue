@@ -6,9 +6,7 @@
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
           <BuilderDoughSelector :dough="dough" />
-          <div class="content__diameter">
-            <BuilderSizeSelector :sizes="sizes" />
-          </div>
+          <BuilderSizeSelector :sizes="sizes" />
           <div class="content__ingredients">
             <BuilderIngredientsSelector
               :ingredients="ingredients"
