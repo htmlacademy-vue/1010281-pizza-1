@@ -5,16 +5,19 @@
       <div class="sheet__content ingredients">
         <div class="ingredients__sauce">
           <p>Основной соус:</p>
-          <AppRadioButton
+          <label
+            class="radio ingredients__input"
             v-for="sauce in sauces"
             :key="sauce.id"
-            name="sauce"
-            :value="selectSauceType(sauce.name)"
-            :checked="sauce.id === 1"
-            class="ingredients__input"
           >
+            <input
+              type="radio"
+              name="sauce"
+              :value="selectSauceType(sauce.name)"
+              :checked="sauce.id === 1"
+            />
             <span>{{ sauce.name }}</span>
-          </AppRadioButton>
+          </label>
         </div>
         <div class="ingredients__filling">
           <p>Начинка:</p>
@@ -60,14 +63,8 @@
 </template>
 
 <script>
-import AppRadioButton from "@/common/components/AppRadioButton.vue";
-
 export default {
   name: "BuilderIngredientsSelector",
-
-  components: {
-    AppRadioButton,
-  },
 
   props: {
     ingredients: {

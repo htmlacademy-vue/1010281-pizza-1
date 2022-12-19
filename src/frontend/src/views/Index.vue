@@ -12,13 +12,14 @@
             :sauces="sauces"
           />
           <div class="content__pizza">
-            <AppInput
-              type="text"
-              name="pizza_name"
-              placeholder="Введите название пиццы"
-            >
+            <label class="input">
               <span class="visually-hidden">Название пиццы</span>
-            </AppInput>
+              <input
+                type="text"
+                name="pizza_name"
+                placeholder="Введите название пиццы"
+              />
+            </label>
             <BuilderPizzaView />
             <BuilderPriceCounter />
           </div>
@@ -36,7 +37,6 @@ import BuilderSizeSelector from "@/modules/builder/components/BuilderSizeSelecto
 import BuilderIngredientsSelector from "@/modules/builder/components/BuilderIngredientsSelector.vue";
 import BuilderPizzaView from "@/modules/builder/components/BuilderPizzaView.vue";
 import BuilderPriceCounter from "../modules/builder/components/BuilderPriceCounter.vue";
-import AppInput from "@/common/components/AppInput.vue";
 
 export default {
   name: "Index",
@@ -48,7 +48,6 @@ export default {
     BuilderIngredientsSelector,
     BuilderPizzaView,
     BuilderPriceCounter,
-    AppInput,
   },
 
   data() {
