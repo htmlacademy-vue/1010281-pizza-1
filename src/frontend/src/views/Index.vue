@@ -35,8 +35,8 @@ import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelec
 import BuilderSizeSelector from "@/modules/builder/components/BuilderSizeSelector.vue";
 import BuilderIngredientsSelector from "@/modules/builder/components/BuilderIngredientsSelector.vue";
 import BuilderPizzaView from "@/modules/builder/components/BuilderPizzaView.vue";
+import BuilderPriceCounter from "../modules/builder/components/BuilderPriceCounter.vue";
 import AppInput from "@/common/components/AppInput.vue";
-import BuilderPriceCounter from "@/common/components/BuilderPriceCounter.vue";
 
 export default {
   name: "Index",
@@ -47,8 +47,8 @@ export default {
     BuilderSizeSelector,
     BuilderIngredientsSelector,
     BuilderPizzaView,
-    AppInput,
     BuilderPriceCounter,
+    AppInput,
   },
 
   data() {
