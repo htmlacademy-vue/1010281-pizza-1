@@ -1,37 +1,59 @@
 <template>
-  <div class="sheet">
-    <h2 class="title title--small sheet__title">Выберите ингредиенты</h2>
-    <div class="sheet__content ingredients">
-      <div class="ingredients__sauce">
-        <p>Основной соус:</p>
-        <AppRadioButton
-          v-for="sauce in sauces"
-          :key="sauce.id"
-          name="sauce"
-          :value="sauce.name"
-          :checked="sauce.id === 1"
-          class="ingredients__input"
-        >
-          <span>{{ sauce.name }}</span>
-        </AppRadioButton>
-      </div>
-      <div class="ingredients__filling">
-        <p>Начинка:</p>
-        <ul class="ingredients__list">
-          <li
-            v-for="ingredient in ingredients"
-            :key="ingredient.id"
-            class="ingredients__item"
+  <div class="content__ingredients">
+    <div class="sheet">
+      <h2 class="title title--small sheet__title">Выберите ингредиенты</h2>
+      <div class="sheet__content ingredients">
+        <div class="ingredients__sauce">
+          <p>Основной соус:</p>
+          <AppRadioButton
+            v-for="sauce in sauces"
+            :key="sauce.id"
+            name="sauce"
+            :value="selectSauceType(sauce.name)"
+            :checked="sauce.id === 1"
+            class="ingredients__input"
           >
-            <span
-              class="filling"
-              :class="setFillingLabelClass(ingredient.name)"
+            <span>{{ sauce.name }}</span>
+          </AppRadioButton>
+        </div>
+        <div class="ingredients__filling">
+          <p>Начинка:</p>
+          <ul class="ingredients__list">
+            <li
+              v-for="ingredient in ingredients"
+              :key="ingredient.id"
+              class="ingredients__item"
             >
-              {{ ingredient.name }}
-            </span>
-            <ItemCounter class="ingredients__counter" />
-          </li>
-        </ul>
+              <span
+                class="filling"
+                :class="`filling--${selectFillingType(ingredient.name)}`"
+              >
+                {{ ingredient.name }}
+              </span>
+              <div class="counter counter--orange ingredients__counter">
+                <button
+                  type="button"
+                  class="counter__button counter__button--minus"
+                  disabled
+                >
+                  <span class="visually-hidden">Меньше</span>
+                </button>
+                <input
+                  type="text"
+                  name="counter"
+                  class="counter__input"
+                  value="0"
+                />
+                <button
+                  type="button"
+                  class="counter__button counter__button--plus"
+                >
+                  <span class="visually-hidden">Больше</span>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -39,14 +61,12 @@
 
 <script>
 import AppRadioButton from "@/common/components/AppRadioButton.vue";
-import ItemCounter from "@/common/components/ItemCounter.vue";
 
 export default {
   name: "BuilderIngredientsSelector",
 
   components: {
     AppRadioButton,
-    ItemCounter,
   },
 
   props: {
@@ -61,7 +81,7 @@ export default {
   },
 
   methods: {
-    setFillingLabelClass(name) {
+    selectFillingType(name) {
       const ingredients = {
         Грибы: "mushrooms",
         Томаты: "tomatoes",
@@ -79,7 +99,15 @@ export default {
         Салями: "salami",
         Лосось: "salmon",
       };
-      return `filling--${ingredients[name]}`;
+      return ingredients[name];
+    },
+
+    selectSauceType(name) {
+      const sauces = {
+        Томатный: "tomato",
+        Сливочный: "creamy",
+      };
+      return sauces[name];
     },
   },
 };

@@ -7,12 +7,10 @@
           <h1 class="title title--big">Конструктор пиццы</h1>
           <BuilderDoughSelector :dough="dough" />
           <BuilderSizeSelector :sizes="sizes" />
-          <div class="content__ingredients">
-            <BuilderIngredientsSelector
-              :ingredients="ingredients"
-              :sauces="sauces"
-            />
-          </div>
+          <BuilderIngredientsSelector
+            :ingredients="ingredients"
+            :sauces="sauces"
+          />
           <div class="content__pizza">
             <AppInput
               type="text"
