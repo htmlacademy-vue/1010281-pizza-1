@@ -2,7 +2,13 @@
   <div class="content__constructor">
     <AppDrop @drop="add">
       <div class="pizza pizza--foundation--big-tomato">
-        <div class="pizza__wrapper"></div>
+        <div class="pizza__wrapper">
+          <div
+            v-for="ingredient in ingredients"
+            :class="`pizza__filling pizza__filling--${ingredient}`"
+            :key="ingredient"
+          ></div>
+        </div>
       </div>
     </AppDrop>
   </div>
@@ -20,17 +26,13 @@ export default {
   data() {
     return {
       ingredientsTranslate,
+      ingredients: [],
     };
   },
 
   methods: {
     add(ingredient) {
-      const div = document.createElement("div");
-      div.classList.add("pizza__filling");
-      div.classList.add(
-        `pizza__filling--${this.ingredientsTranslate[ingredient.name]}`
-      );
-      document.querySelector(".pizza__wrapper").appendChild(div);
+      this.ingredients.push(this.ingredientsTranslate[ingredient.name]);
     },
   },
 };
