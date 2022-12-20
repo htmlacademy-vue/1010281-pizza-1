@@ -27,12 +27,14 @@
               :key="ingredient.id"
               class="ingredients__item"
             >
-              <span
-                class="filling"
-                :class="`filling--${selectFillingType(ingredient.name)}`"
-              >
-                {{ ingredient.name }}
-              </span>
+              <AppDrag :transferData="ingredient">
+                <span
+                  class="filling"
+                  :class="`filling--${selectFillingType(ingredient.name)}`"
+                >
+                  {{ ingredient.name }}
+                </span>
+              </AppDrag>
               <div class="counter counter--orange ingredients__counter">
                 <button
                   type="button"
@@ -63,8 +65,15 @@
 </template>
 
 <script>
+import AppDrag from "@/common/components/AppDrag.vue";
+import { ingredientsTranslate } from "@/common/constants.js";
+
 export default {
   name: "BuilderIngredientsSelector",
+
+  components: {
+    AppDrag,
+  },
 
   props: {
     ingredients: {
@@ -77,26 +86,15 @@ export default {
     },
   },
 
+  data() {
+    return {
+      ingredientsTranslate,
+    };
+  },
+
   methods: {
     selectFillingType(name) {
-      const ingredients = {
-        Грибы: "mushrooms",
-        Томаты: "tomatoes",
-        Ананас: "ananas",
-        Бекон: "bacon",
-        "Блю чиз": "blue_cheese",
-        Чеддер: "cheddar",
-        Чили: "chile",
-        Ветчина: "ham",
-        Халапеньо: "jalapeno",
-        Моцарелла: "mozzarella",
-        Маслины: "olives",
-        Лук: "onion",
-        Пармезан: "parmesan",
-        Салями: "salami",
-        Лосось: "salmon",
-      };
-      return ingredients[name];
+      return this.ingredientsTranslate[name];
     },
 
     selectSauceType(name) {

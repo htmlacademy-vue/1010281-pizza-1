@@ -1,0 +1,17 @@
+export const ingredientsTranslate = {
+  Грибы: "mushrooms",
+  Томаты: "tomatoes",
+  Ананас: "ananas",
+  Бекон: "bacon",
+  "Блю чиз": "blue_cheese",
+  Чеддер: "cheddar",
+  Чили: "chile",
+  Ветчина: "ham",
+  Халапеньо: "jalapeno",
+  Моцарелла: "mozzarella",
+  Маслины: "olives",
+  Лук: "onion",
+  Пармезан: "parmesan",
+  Салями: "salami",
+  Лосось: "salmon",
+};
