@@ -1,7 +1,7 @@
 <template>
   <div class="content__constructor">
     <AppDrop @drop="add">
-      <div class="pizza pizza--foundation--big-tomato">
+      <div :class="`pizza pizza--foundation--big-${sauce}`">
         <div class="pizza__wrapper">
           <div
             v-for="ingredient in ingredients"
@@ -22,6 +22,13 @@ export default {
   name: "BuilderPizzaView",
 
   components: { AppDrop },
+
+  props: {
+    sauce: {
+      type: String,
+      required: true,
+    },
+  },
 
   data() {
     return {

@@ -10,6 +10,7 @@
           <BuilderIngredientsSelector
             :ingredients="ingredients"
             :sauces="sauces"
+            @change="changeSauce"
           />
           <div class="content__pizza">
             <label class="input">
@@ -20,7 +21,7 @@
                 placeholder="Введите название пиццы"
               />
             </label>
-            <BuilderPizzaView />
+            <BuilderPizzaView :sauce="selectedSauce" />
             <BuilderPriceCounter />
           </div>
         </div>
@@ -56,7 +57,15 @@ export default {
       sauces: pizza.sauces,
       sizes: pizza.sizes,
       dough: pizza.dough,
+
+      selectedSauce: "tomato",
     };
+  },
+
+  methods: {
+    changeSauce(sauce) {
+      this.selectedSauce = sauce;
+    },
   },
 };
 </script>

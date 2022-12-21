@@ -15,6 +15,7 @@
               name="sauce"
               :value="selectSauceType(sauce.name)"
               :checked="sauce.id === 1"
+              @change="changeSauce"
             />
             <span>{{ sauce.name }}</span>
           </label>
@@ -103,6 +104,11 @@ export default {
         Сливочный: "creamy",
       };
       return sauces[name];
+    },
+
+    changeSauce(event) {
+      console.log(event.target.value);
+      this.$emit("change", event.target.value);
     },
   },
 };
