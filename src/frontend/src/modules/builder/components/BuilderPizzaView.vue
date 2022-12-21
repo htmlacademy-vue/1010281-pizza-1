@@ -23,6 +23,10 @@ export default {
       type: String,
       required: true,
     },
+    selectedIngredients: {
+      type: Array,
+      required: true,
+    },
   },
 
   data() {

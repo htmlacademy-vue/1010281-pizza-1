@@ -38,7 +38,10 @@
                 <button
                   type="button"
                   class="counter__button counter__button--minus"
-                  disabled
+                  @click="removeIngredient(selectFillingType(ingredient.name))"
+                  :disabled="
+                    ingredientsCount[selectFillingType(ingredient.name)] === 0
+                  "
                 >
                   <span class="visually-hidden">Меньше</span>
                 </button>
@@ -46,11 +49,14 @@
                   type="text"
                   name="counter"
                   class="counter__input"
-                  value="0"
+                  v-model.number="
+                    ingredientsCount[selectFillingType(ingredient.name)]
+                  "
                 />
                 <button
                   type="button"
                   class="counter__button counter__button--plus"
+                  @click="addIngredient(selectFillingType(ingredient.name))"
                 >
                   <span class="visually-hidden">Больше</span>
                 </button>
@@ -83,6 +89,23 @@ export default {
   data() {
     return {
       ingredientsTranslate,
+      ingredientsCount: {
+        mushrooms: 0,
+        tomatoes: 0,
+        ananas: 0,
+        bacon: 0,
+        blue_cheese: 0,
+        cheddar: 0,
+        chile: 0,
+        ham: 0,
+        jalapeno: 0,
+        mozzarella: 0,
+        olives: 0,
+        onion: 0,
+        parmesan: 0,
+        salami: 0,
+        salmon: 0,
+      },
     };
   },
 
