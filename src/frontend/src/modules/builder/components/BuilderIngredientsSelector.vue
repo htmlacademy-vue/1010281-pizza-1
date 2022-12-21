@@ -28,14 +28,12 @@
               :key="ingredient.id"
               class="ingredients__item"
             >
-              <AppDrag :transferData="ingredient">
-                <span
-                  class="filling"
-                  :class="`filling--${selectFillingType(ingredient.name)}`"
-                >
-                  {{ ingredient.name }}
-                </span>
-              </AppDrag>
+              <span
+                class="filling"
+                :class="`filling--${selectFillingType(ingredient.name)}`"
+              >
+                {{ ingredient.name }}
+              </span>
               <div class="counter counter--orange ingredients__counter">
                 <button
                   type="button"
@@ -66,15 +64,10 @@
 </template>
 
 <script>
-import AppDrag from "@/common/components/AppDrag.vue";
 import { ingredientsTranslate } from "@/common/constants.js";
 
 export default {
   name: "BuilderIngredientsSelector",
-
-  components: {
-    AppDrag,
-  },
 
   props: {
     ingredients: {
@@ -107,8 +100,24 @@ export default {
     },
 
     changeSauce(event) {
-      console.log(event.target.value);
       this.$emit("change", event.target.value);
+    },
+
+    addIngredient(ingredient) {
+      this.ingredientsCount[ingredient] += 1;
+      this.passIngredients();
+    },
+
+    removeIngredient(ingredient) {
+      this.ingredientsCount[ingredient] -= 1;
+      this.passIngredients();
+    },
+
+    passIngredients() {
+      const selectedIngredients = Object.keys(this.ingredientsCount).filter(
+        (ingredient) => this.ingredientsCount[ingredient]
+      );
+      this.$emit("update-ingredients", selectedIngredients);
     },
   },
 };
