@@ -15,6 +15,7 @@
             :value="selectDoughType(doughItem.name)"
             class="visually-hidden"
             :checked="doughItem.id === 1"
+            @change="changeDoughSize"
           />
           <b>{{ doughItem.name }}</b>
           <span>{{ doughItem.description }}</span>
@@ -27,6 +28,8 @@
 <script>
 export default {
   name: "BuilderDoughSelector",
+
+  emits: ["change-dough-size"],
 
   props: {
     dough: {
@@ -42,6 +45,10 @@ export default {
         Тонкое: "light",
       };
       return doughs[type];
+    },
+
+    changeDoughSize(event) {
+      this.$emit("change-dough-size", event.target.value);
     },
   },
 };

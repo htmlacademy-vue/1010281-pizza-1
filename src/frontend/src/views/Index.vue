@@ -5,7 +5,10 @@
       <form action="#" method="post">
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
-          <BuilderDoughSelector :dough="dough" />
+          <BuilderDoughSelector
+            :dough="dough"
+            @change-dough-size="changeDoughSize"
+          />
           <BuilderSizeSelector :sizes="sizes" />
           <BuilderIngredientsSelector
             :ingredients="ingredients"
@@ -25,6 +28,7 @@
             <BuilderPizzaView
               :sauce="selectedSauce"
               :selectedIngredients="selectedIngredients"
+              :doughSize="selectedDoughSize"
             />
             <BuilderPriceCounter />
           </div>
@@ -64,6 +68,7 @@ export default {
 
       selectedSauce: "tomato",
       selectedIngredients: [],
+      selectedDoughSize: "small",
     };
   },
 
@@ -73,6 +78,9 @@ export default {
     },
     updateIngredients(ingredients) {
       this.selectedIngredients = ingredients;
+    },
+    changeDoughSize(size) {
+      this.selectedDoughSize = size === "light" ? "small" : "big";
     },
   },
 };

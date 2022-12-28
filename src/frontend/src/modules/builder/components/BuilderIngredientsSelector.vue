@@ -75,6 +75,8 @@ import { ingredientsTranslate } from "@/common/constants.js";
 export default {
   name: "BuilderIngredientsSelector",
 
+  emits: ["update-ingredients"],
+
   props: {
     ingredients: {
       type: Array,

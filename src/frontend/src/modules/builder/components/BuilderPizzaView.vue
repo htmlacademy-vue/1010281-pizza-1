@@ -1,6 +1,6 @@
 <template>
   <div class="content__constructor">
-    <div :class="`pizza pizza--foundation--big-${sauce}`">
+    <div :class="`pizza pizza--foundation--${doughSize}-${sauce}`">
       <div class="pizza__wrapper">
         <div
           v-for="ingredient in selectedIngredients"
@@ -25,6 +25,10 @@ export default {
     },
     selectedIngredients: {
       type: Array,
+      required: true,
+    },
+    doughSize: {
+      type: String,
       required: true,
     },
   },
